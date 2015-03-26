@@ -24,7 +24,7 @@ DB.extend({
             options.beforeAjax &&
                 options.beforeAjax.call(this, options);
             this._feeds.push(options.success.bind(options));
-            if (db._feedData) return this.feed(this._feedData);
+            if (db._feedData) return res.feed(this._feedData);
         };
         /**
          * feed
@@ -33,7 +33,8 @@ DB.extend({
          */
         res.feed = function (data) {
             // cache the data
-            db._feedData || (db._feedData = data);
+            db._feedData !== data &&
+                (db._feedData = data);
             db._feeds.forEach(function (cb) {
                 cb(data);
             });

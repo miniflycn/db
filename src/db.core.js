@@ -43,7 +43,7 @@ $.extend(DB.prototype, {
             // if handle return false, just break
             if (res === false) return;
         }
-        cb(res);
+        cb && cb(res);
     },
     /**
      * ajax
@@ -66,7 +66,7 @@ $.extend(DB, {
             return this;
         };
     },
-    extend: jQuery.extend,
+    extend: $.extend,
     // default options
     options: {}
 });
